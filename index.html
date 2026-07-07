@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCK 승부 예측 모델</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 영역 -->
+        <header>
+            <h1>LCK 승부 예측 모델</h1>
+            <p class="subtitle">Weighted Probability Model</p>
+        </header>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main>
+            <!-- 설정 카드 -->
+            <section class="card config-card">
+                <h2>경기 및 가중치 설정</h2>
+                
+                <!-- 팀 선택 -->
+                <div class="team-selection">
+                    <div class="select-group">
+                        <label for="teamA">Team A</label>
+                        <select id="teamA"></select>
+                    </div>
+                    <div class="vs-text">VS</div>
+                    <div class="select-group">
+                        <label for="teamB">Team B</label>
+                        <select id="teamB"></select>
+                    </div>
+                </div>
+
+                <!-- 모델 선택 (수학적 심화 모델 추가) -->
+                <div class="model-selection">
+                    <label for="modelType">수학적 예측 모델 선택</label>
+                    <select id="modelType">
+                        <option value="arithmetic">기본 모델: 가중 산술 평균 모델</option>
+                        <option value="logistic">심화 모델: 가중 점수 차이 기반 로지스틱 모델 (오즈비 응용)</option>
+                    </select>
+                </div>
+
+                <!-- 슬라이더 중요도 설정 -->
+                <div class="sliders-container">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>상대전적 중요도</span>
+                            <span id="impHeadToHeadVal">50</span>
+                        </div>
+                        <input type="range" id="impHeadToHead" min="0" max="100" value="50">
+                        <div class="real-weight">실제 적용 가중치: <span id="weightHeadToHead">50.0%</span></div>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>Power Ranking 중요도</span>
+                            <span id="impPowerRankingVal">30</span>
+                        </div>
+                        <input type="range" id="impPowerRanking" min="0" max="100" value="30">
+                        <div class="real-weight">실제 적용 가중치: <span id="weightPowerRanking">30.0%</span></div>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>최근 경기력 중요도</span>
+                            <span id="impRecent5Val">20</span>
+                        </div>
+                        <input type="range" id="impRecent5" min="0" max="100" value="20">
+                        <div class="real-weight">실제 적용 가중치: <span id="weightRecent5">20.0%</span></div>
+                    </div>
+                </div>
+
+                <button id="predictBtn" class="btn-predict">결과 예측하기</button>
+            </section>
+
+            <!-- 결과 출력 카드 -->
+            <section id="resultCard" class="card result-card hidden">
+                <h2>예측 분석 결과</h2>
+                
+                <div class="winner-announcement">
+                    <p>예상 승리 팀</p>
+                    <h3 id="predictedWinner">T1</h3>
+                </div>
+
+                <!-- 확률 그래프 -->
+                <div class="probability-bars">
+                    <div class="bar-wrapper">
+                        <div class="bar-label"><span id="nameA">Team A</span> <span id="pctA">50%</span></div>
+                        <div class="bar-container">
+                            <div id="barA" class="bar bar-a"></div>
+                        </div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="bar-label"><span id="nameB">Team B</span> <span id="pctB">50%</span></div>
+                        <div class="bar-container">
+                            <div id="barB" class="bar bar-b"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 기여도 분석 및 상세 설명 -->
+                <div class="analysis-details">
+                    <h4>예측에 영향을 준 요소 분석</h4>
+                    <div id="factorHeadToHead" class="factor-desc"></div>
+                    <div id="factorPower" class="factor-desc"></div>
+                    <div id="factorRecent" class="factor-desc"></div>
+                    <div id="modelExplanation" class="model-explanation-box"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
