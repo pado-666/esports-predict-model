@@ -57,7 +57,7 @@ header h1 {
     text-transform: uppercase;
 }
 
-/* Glassmorphism 카드 디자인 */
+/* 카드 디자인 */
 .card {
     background: var(--card-bg);
     backdrop-filter: blur(12px);
@@ -216,7 +216,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     box-shadow: none;
 }
 
-/* 결과 카드 내부 스타일 */
+/* 결과 카드 디자인 */
 .hidden {
     display: none !important;
 }
@@ -312,15 +312,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: #ffffff;
 }
 
+/* 전구 박스 레이아웃 유지용 스타일 및 강제 숨김(display: none) 처리 */
 .model-explanation-box {
-    margin-top: 20px;
-    padding: 15px;
-    background: rgba(0, 255, 204, 0.04);
-    border: 1px dashed rgba(0, 255, 204, 0.2);
-    border-radius: 8px;
-    font-size: 0.9rem;
-    color: #e0e6ed;
-    line-height: 1.5;
+    display: none !important;
 }
 
 /* 반응형 모바일 최적화 */

@@ -8,19 +8,15 @@
 </head>
 <body>
     <div class="container">
-        <!-- 헤더 영역 -->
         <header>
             <h1>LCK 승부 예측 모델</h1>
             <p class="subtitle">Weighted Probability Model</p>
         </header>
 
-        <!-- 메인 콘텐츠 영역 -->
         <main>
-            <!-- 설정 카드 -->
             <section class="card config-card">
                 <h2>경기 및 가중치 설정</h2>
                 
-                <!-- 팀 선택 -->
                 <div class="team-selection">
                     <div class="select-group">
                         <label for="teamA">Team A</label>
@@ -33,16 +29,14 @@
                     </div>
                 </div>
 
-                <!-- 모델 선택 (수학적 심화 모델 추가) -->
                 <div class="model-selection">
                     <label for="modelType">수학적 예측 모델 선택</label>
                     <select id="modelType">
                         <option value="arithmetic">기본 모델: 가중 산술 평균 모델</option>
-                        <option value="logistic">심화 모델: 가중 점수 차이 기반 로지스틱 모델 (오즈비 응용)</option>
+                        <option value="logistic">심화 모델: 가중 점수 차이 기반 로지스틱 모델</option>
                     </select>
                 </div>
 
-                <!-- 슬라이더 중요도 설정 -->
                 <div class="sliders-container">
                     <div class="slider-group">
                         <div class="slider-header">
@@ -75,7 +69,6 @@
                 <button id="predictBtn" class="btn-predict">결과 예측하기</button>
             </section>
 
-            <!-- 결과 출력 카드 -->
             <section id="resultCard" class="card result-card hidden">
                 <h2>예측 분석 결과</h2>
                 
@@ -84,7 +77,6 @@
                     <h3 id="predictedWinner">T1</h3>
                 </div>
 
-                <!-- 확률 그래프 -->
                 <div class="probability-bars">
                     <div class="bar-wrapper">
                         <div class="bar-label"><span id="nameA">Team A</span> <span id="pctA">50%</span></div>
@@ -100,13 +92,11 @@
                     </div>
                 </div>
 
-                <!-- 기여도 분석 및 상세 설명 -->
                 <div class="analysis-details">
                     <h4>예측에 영향을 준 요소 분석</h4>
                     <div id="factorHeadToHead" class="factor-desc"></div>
                     <div id="factorPower" class="factor-desc"></div>
                     <div id="factorRecent" class="factor-desc"></div>
-                    <div id="modelExplanation" class="model-explanation-box"></div>
                 </div>
             </section>
         </main>
