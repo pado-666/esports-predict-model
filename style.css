@@ -82,7 +82,7 @@ header h1 {
     align-items: center;
     justify-content: space-between;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .select-group {
@@ -120,19 +120,6 @@ select:focus {
     font-weight: 800;
     color: var(--text-secondary);
     padding-top: 20px;
-}
-
-/* 모델 선택 */
-.model-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 30px;
-}
-
-.model-selection label {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
 }
 
 /* 슬라이더 영역 */
@@ -310,11 +297,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .factor-desc strong {
     color: #ffffff;
-}
-
-/* 전구 박스 레이아웃 유지용 스타일 및 강제 숨김(display: none) 처리 */
-.model-explanation-box {
-    display: none !important;
 }
 
 /* 반응형 모바일 최적화 */

@@ -36,7 +36,6 @@ const LCK_DATA = {
 const DOM = {
     teamA: document.getElementById('teamA'),
     teamB: document.getElementById('teamB'),
-    modelType: document.getElementById('modelType'),
     predictBtn: document.getElementById('predictBtn'),
     resultCard: document.getElementById('resultCard'),
     predictedWinner: document.getElementById('predictedWinner'),
@@ -130,11 +129,10 @@ function updateWeights() {
     DOM.weightRecent5.innerText = (weights.recent * 100).toFixed(1) + "%";
 }
 
-// 승리 예측 엔진 핵심 함수
+// 승리 예측 엔진 핵심 함수 (가중 산술 평균 모델 상시 고정)
 function runPrediction() {
     const teamA = DOM.teamA.value;
     const teamB = DOM.teamB.value;
-    const model = DOM.modelType.value;
     
     const h2hA = LCK_DATA.headToHead[teamA][teamB];
     const h2hB = LCK_DATA.headToHead[teamB][teamA];
@@ -143,24 +141,13 @@ function runPrediction() {
     const recentA = LCK_DATA.recent5[teamA];
     const recentB = LCK_DATA.recent5[teamB];
     
-    let probA = 0;
-    let probB = 0;
-    
     // 각 지표점수의 가중합 연산
     const scoreA = (h2hA * weights.h2h) + (powerA * weights.power) + (recentA * weights.recent);
     const scoreB = (h2hB * weights.h2h) + (powerB * weights.power) + (recentB * weights.recent);
     
-    if (model === "arithmetic") {
-        // 1. 가중 산술 평균 모델 알고리즘
-        probA = scoreA / (scoreA + scoreB);
-        probB = scoreB / (scoreA + scoreB);
-    } else if (model === "logistic") {
-        // 2. 점수 편차 기반 로지스틱 예측 함수 알고리즘 (상수 k=4 적용)
-        const deltaS = scoreA - scoreB;
-        const k = 4.0;
-        probA = 1 / (1 + Math.exp(-k * deltaS));
-        probB = 1 - probA;
-    }
+    // 가중 산술 평균 모델 알고리즘 작동
+    const probA = scoreA / (scoreA + scoreB);
+    const probB = scoreB / (scoreA + scoreB);
     
     const pctAVal = (probA * 100).toFixed(1);
     const pctBVal = (probB * 100).toFixed(1);
